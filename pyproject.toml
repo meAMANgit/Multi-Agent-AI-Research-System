@@ -1,0 +1,80 @@
+[build-system]
+requires = ["setuptools>=65.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "research-system"
+version = "2.0.0"
+description = "Enterprise-Grade Multi-Agent AI Deep Research & Intelligence System"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "ResearchCore AI Team", email = "research@ai.core" }
+]
+keywords = [
+    "multi-agent",
+    "deep-research",
+    "ai-agents",
+    "fastapi",
+    "streamlit",
+    "llm",
+    "rag",
+    "automated-research",
+    "knowledge-graphs"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "fastapi>=0.110.0",
+    "uvicorn[standard]>=0.28.0",
+    "pydantic>=2.6.0",
+    "python-dotenv>=1.0.0",
+    "httpx>=0.27.0",
+    "beautifulsoup4>=4.12.0",
+    "duckduckgo-search>=6.0.0",
+    "rich>=13.7.0",
+    "streamlit>=1.32.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-cov>=4.1.0",
+    "black>=24.2.0",
+    "ruff>=0.3.0",
+    "mypy>=1.9.0",
+]
+
+[project.scripts]
+research-cli = "cli.main:main"
+research-api = "src.research_system.api.server:start"
+research-ui = "src.research_system.ui.streamlit_app:run_app"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*", "cli*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+exclude = [".git", "__pycache__", ".venv", "build", "dist"]
